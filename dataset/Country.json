@@ -1,0 +1,30 @@
+{
+	"name": "Country",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adftraningsession1_blob_employeedata",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Country.csv",
+				"folderPath": "Employee_Source_data",
+				"container": "tblemployeedata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Cuntry",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

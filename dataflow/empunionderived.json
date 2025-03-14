@@ -1,0 +1,83 @@
+{
+	"name": "empunionderived",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "employee_csv",
+						"type": "DatasetReference"
+					},
+					"name": "empdataset1"
+				},
+				{
+					"dataset": {
+						"referenceName": "employee_csv",
+						"type": "DatasetReference"
+					},
+					"name": "empdataset2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "empunionresultset",
+						"type": "DatasetReference"
+					},
+					"name": "empunionresultset"
+				}
+			],
+			"transformations": [
+				{
+					"name": "union1"
+				},
+				{
+					"name": "insertiondate"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Index as string,",
+				"          {Customer Id} as string,",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          Company as string,",
+				"          City as string,",
+				"          Country as string,",
+				"          {Phone 1} as string,",
+				"          {Phone 2} as string,",
+				"          Email as string,",
+				"          {Subscription Date} as string,",
+				"          Website as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> empdataset1",
+				"source(output(",
+				"          Index as string,",
+				"          {Customer Id} as string,",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          Company as string,",
+				"          City as string,",
+				"          Country as string,",
+				"          {Phone 1} as string,",
+				"          {Phone 2} as string,",
+				"          Email as string,",
+				"          {Subscription Date} as string,",
+				"          Website as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> empdataset2",
+				"empdataset1, empdataset2 union(byName: true)~> union1",
+				"union1 derive(Inserttion_date = currentDate()) ~> insertiondate",
+				"insertiondate sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> empunionresultset"
+			]
+		}
+	}
+}

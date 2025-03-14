@@ -1,0 +1,24 @@
+{
+	"name": "empunionresultset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adftraningsession1_blob_employeedata",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Employee_Destination_data",
+				"container": "tblemployeedata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

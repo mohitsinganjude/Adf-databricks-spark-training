@@ -1,0 +1,29 @@
+{
+	"name": "empdataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "employeedb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"schema": {
+			"type": "object",
+			"properties": {
+				"empId": {
+					"type": "string"
+				},
+				"empName": {
+					"type": "string"
+				},
+				"empLocation": {
+					"type": "string"
+				}
+			}
+		},
+		"typeProperties": {
+			"collectionName": "employee"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

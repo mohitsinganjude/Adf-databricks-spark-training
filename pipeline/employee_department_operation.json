@@ -1,0 +1,34 @@
+{
+	"name": "employee_department_operation",
+	"properties": {
+		"activities": [
+			{
+				"name": "emp_dept_op",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "deptdataset",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-03-10T18:16:31Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

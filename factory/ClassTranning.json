@@ -1,0 +1,9 @@
+{
+	"name": "ClassTranning",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "657d35f5-dfff-4220-840f-e139906dadfc",
+		"tenantId": "6e5b4025-f952-4e70-927e-c27de0031bb5"
+	}
+}

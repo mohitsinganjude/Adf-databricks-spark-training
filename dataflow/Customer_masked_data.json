@@ -1,0 +1,68 @@
+{
+	"name": "Customer_masked_data",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "custdataset",
+						"type": "DatasetReference"
+					},
+					"name": "customerdataset"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "CostomerMaskedData",
+						"type": "DatasetReference"
+					},
+					"name": "CustomerMaskeddata"
+				}
+			],
+			"transformations": [
+				{
+					"name": "MaskedPhoneNumber"
+				},
+				{
+					"name": "unmaskedPhone1"
+				},
+				{
+					"name": "AgeCastNumber"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Index as string,",
+				"          {Customer Id} as string,",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          Company as string,",
+				"          City as string,",
+				"          Country as string,",
+				"          {Phone 1} as string,",
+				"          {Phone 2} as string,",
+				"          Email as string,",
+				"          {Subscription Date} as string,",
+				"          Website as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> customerdataset",
+				"customerdataset derive(MaskedPhone1 = toBase64({Phone 1}),",
+				"          MaskedPhone2 = toBase64({Phone 2},'UTF-16')) ~> MaskedPhoneNumber",
+				"MaskedPhoneNumber derive(unmaskedPhone1 = fromBase64(MaskedPhone2, 'UTF-16'),",
+				"          Age = toString('30')) ~> unmaskedPhone1",
+				"unmaskedPhone1 cast(output(",
+				"          Age as integer '000'",
+				"     ),",
+				"     errors: true) ~> AgeCastNumber",
+				"AgeCastNumber sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> CustomerMaskeddata"
+			]
+		}
+	}
+}
