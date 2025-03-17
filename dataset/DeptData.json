@@ -1,0 +1,65 @@
+{
+	"name": "DeptData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adftraningsession1_blob_employeedata",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Department(2).csv",
+				"folderPath": "Employee_Source_data",
+				"container": "tblemployeedata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "department_ID",
+				"type": "String"
+			},
+			{
+				"name": "department_code",
+				"type": "String"
+			},
+			{
+				"name": "department_head",
+				"type": "String"
+			},
+			{
+				"name": "department_budget",
+				"type": "String"
+			},
+			{
+				"name": "department_location",
+				"type": "String"
+			},
+			{
+				"name": "department_phone",
+				"type": "String"
+			},
+			{
+				"name": "department_email",
+				"type": "String"
+			},
+			{
+				"name": "department_creation_date",
+				"type": "String"
+			},
+			{
+				"name": "department_description",
+				"type": "String"
+			},
+			{
+				"name": "department_employee_count",
+				"type": "String"
+			}
+		]
+	}
+}
