@@ -114,6 +114,239 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DeptData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adftraningsession1_blob_employeedata",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Department(2).csv",
+						"folderPath": "Employee_Source_data",
+						"container": "tblemployeedata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "department_ID",
+						"type": "String"
+					},
+					{
+						"name": "department_code",
+						"type": "String"
+					},
+					{
+						"name": "department_head",
+						"type": "String"
+					},
+					{
+						"name": "department_budget",
+						"type": "String"
+					},
+					{
+						"name": "department_location",
+						"type": "String"
+					},
+					{
+						"name": "department_phone",
+						"type": "String"
+					},
+					{
+						"name": "department_email",
+						"type": "String"
+					},
+					{
+						"name": "department_creation_date",
+						"type": "String"
+					},
+					{
+						"name": "department_description",
+						"type": "String"
+					},
+					{
+						"name": "department_employee_count",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adftraningsession1_blob_employeedata')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Emp_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adftraningsession1_blob_employeedata",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Employees(2).csv",
+						"folderPath": "Employee_Source_data",
+						"container": "tblemployeedata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "employee_id",
+						"type": "String"
+					},
+					{
+						"name": "first_name",
+						"type": "String"
+					},
+					{
+						"name": "last_name",
+						"type": "String"
+					},
+					{
+						"name": "age",
+						"type": "String"
+					},
+					{
+						"name": "email",
+						"type": "String"
+					},
+					{
+						"name": "job_title",
+						"type": "String"
+					},
+					{
+						"name": "department",
+						"type": "String"
+					},
+					{
+						"name": "salary",
+						"type": "String"
+					},
+					{
+						"name": "hire_date",
+						"type": "String"
+					},
+					{
+						"name": "department_id",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adftraningsession1_blob_employeedata')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Empdeptlookupset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adftraningsession1_blob_employeedata",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Employee_Destination_data",
+						"container": "tblemployeedata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Index",
+						"type": "String"
+					},
+					{
+						"name": "Customer Id",
+						"type": "String"
+					},
+					{
+						"name": "First Name",
+						"type": "String"
+					},
+					{
+						"name": "Last Name",
+						"type": "String"
+					},
+					{
+						"name": "Company",
+						"type": "String"
+					},
+					{
+						"name": "City",
+						"type": "String"
+					},
+					{
+						"name": "Country",
+						"type": "String"
+					},
+					{
+						"name": "Phone 1",
+						"type": "String"
+					},
+					{
+						"name": "Phone 2",
+						"type": "String"
+					},
+					{
+						"name": "Email",
+						"type": "String"
+					},
+					{
+						"name": "Subscription Date",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					},
+					{
+						"name": "MaskedPhone1",
+						"type": "String"
+					},
+					{
+						"name": "MaskedPhone2",
+						"type": "String"
+					},
+					{
+						"name": "unmaskedPhone1",
+						"type": "String"
+					},
+					{
+						"name": "Age",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adftraningsession1_blob_employeedata')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/custdataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -537,6 +770,116 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/EmpDeptLookupwindow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Emp_dataset",
+								"type": "DatasetReference"
+							},
+							"name": "Employee"
+						},
+						{
+							"dataset": {
+								"referenceName": "DeptData",
+								"type": "DatasetReference"
+							},
+							"name": "DeptDataset"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "Empdeptlookupset",
+								"type": "DatasetReference"
+							},
+							"name": "EmpDeptLookupdate"
+						}
+					],
+					"transformations": [
+						{
+							"name": "empdeptlookup"
+						},
+						{
+							"name": "window1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          employee_id as string,",
+						"          first_name as string,",
+						"          last_name as string,",
+						"          age as string,",
+						"          email as string,",
+						"          job_title as string,",
+						"          department as string,",
+						"          salary as string,",
+						"          hire_date as string,",
+						"          department_id as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Employee",
+						"source(output(",
+						"          department_ID as string,",
+						"          department_code as string,",
+						"          department_head as string,",
+						"          department_budget as string,",
+						"          department_location as string,",
+						"          department_phone as string,",
+						"          department_email as string,",
+						"          department_creation_date as string,",
+						"          department_description as string,",
+						"          department_employee_count as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> DeptDataset",
+						"Employee, DeptDataset lookup(Employee@department_id == DeptDataset@department_ID,",
+						"     multiple: false,",
+						"     pickup: 'any',",
+						"     broadcast: 'auto')~> empdeptlookup",
+						"empdeptlookup window(over(department),",
+						"     asc(age, true),",
+						"     salary = max(salary)) ~> window1",
+						"window1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          Index as string,",
+						"          {Customer Id} as string,",
+						"          {First Name} as string,",
+						"          {Last Name} as string,",
+						"          Company as string,",
+						"          City as string,",
+						"          Country as string,",
+						"          {Phone 1} as string,",
+						"          {Phone 2} as string,",
+						"          Email as string,",
+						"          {Subscription Date} as string,",
+						"          Website as string,",
+						"          MaskedPhone1 as string,",
+						"          MaskedPhone2 as string,",
+						"          unmaskedPhone1 as string,",
+						"          Age as string",
+						"     ),",
+						"     filePattern:'Emp_dept_lookup',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> EmpDeptLookupdate"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Emp_dataset')]",
+				"[concat(variables('factoryId'), '/datasets/DeptData')]",
+				"[concat(variables('factoryId'), '/datasets/Empdeptlookupset')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/empunionderived')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -686,258 +1029,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/employee_csv')]",
 				"[concat(variables('factoryId'), '/datasets/CosmosDbNoSqlContainer1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/emp_dept_multiple_action')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "union_activity",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "empunionderived",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"empdataset1": {},
-									"empdataset2": {},
-									"empunionresultset": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					},
-					{
-						"name": "Lookupwindows",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "empunionderived",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"empdataset1": {},
-									"empdataset2": {},
-									"empunionresultset": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2025-03-12T15:37:38Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/empunionderived')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/maskingpipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "customermasking",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "Customer_masked_data",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"customerdataset": {},
-									"CustomerMaskeddata": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2025-03-12T15:37:39Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/Customer_masked_data')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/deptdataset')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "empdataset",
-								"type": "DatasetReference"
-							},
-							"name": "empdataset"
-						},
-						{
-							"dataset": {
-								"referenceName": "deptdataset",
-								"type": "DatasetReference"
-							},
-							"name": "deptdataset"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "empdeptresultdataset",
-								"type": "DatasetReference"
-							},
-							"name": "empdeptresult",
-							"rejectedDataLinkedService": {
-								"referenceName": "adftraningsession1_blob_employeedata",
-								"type": "LinkedServiceReference"
-							}
-						}
-					],
-					"transformations": [
-						{
-							"name": "join1"
-						}
-					],
-					"scriptLines": [
-						"source(output(",
-						"          empId as string,",
-						"          empName as string,",
-						"          empLocation as string",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     format: 'document',",
-						"     systemColumns: false) ~> empdataset",
-						"source(output(",
-						"          empId as string,",
-						"          departmentName as string",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     format: 'document') ~> deptdataset",
-						"empdataset, deptdataset join(empdataset@empId == deptdataset@empId,",
-						"     joinType:'inner',",
-						"     matchType:'exact',",
-						"     ignoreSpaces: false,",
-						"     broadcast: 'auto')~> join1",
-						"join1 sink(allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     filePattern:'empdeptresultset',",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> empdeptresult"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/empdataset')]",
-				"[concat(variables('factoryId'), '/datasets/deptdataset')]",
-				"[concat(variables('factoryId'), '/datasets/empdeptresultdataset')]",
-				"[concat(variables('factoryId'), '/linkedServices/adftraningsession1_blob_employeedata')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/employee_department_operation')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "emp_dept_op",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "deptdataset",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"empdataset": {},
-									"deptdataset": {},
-									"empdeptresult": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2025-03-10T18:16:31Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/deptdataset')]"
 			]
 		}
 	]
