@@ -1,5 +1,13 @@
 {
 	"name": "ClassTranning",
+	"properties": {
+		"globalParameters": {
+			"Organization": {
+				"type": "string",
+				"value": "Radical"
+			}
+		}
+	},
 	"location": "westeurope",
 	"identity": {
 		"type": "SystemAssigned",
